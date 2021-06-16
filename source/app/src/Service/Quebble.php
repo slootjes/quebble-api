@@ -7,6 +7,8 @@ use App\VO\Workday;
 
 class Quebble
 {
+    const URL_BASE = 'https://weekplanning.quebble.com/';
+
     /**
      * @var string
      */
@@ -37,9 +39,9 @@ class Quebble
     /**
      * Logs in the current user
      */
-    private function login()
+    private function login(): void
     {
-        $crawler = $this->client->request('GET', 'https://weekplanning.quebble.com/Home/Login');
+        $crawler = $this->client->request('GET', self::URL_BASE.'Home/Login');
         $form = $crawler->selectButton('Login')->form();
         $this->client->submit(
             $form,
@@ -48,11 +50,13 @@ class Quebble
     }
 
     /**
+     * Get planning
+     *
      * @return Workday[]
      */
-    public function loadWorkdays(): array
+    public function getPlanning(): array
     {
-        $crawler = $this->client->request('GET', 'https://weekplanning.quebble.com/EmployeeSelfService/MyTasks');
+        $crawler = $this->client->request('GET', self::URL_BASE.'EmployeeSelfService/MyTasks');
 
         $workdays = $crawler->filterXPath('//*[@id="collapseOne"]/div/div[2]/div/div[*]/div/div[1]')->each(
             function ($node) {

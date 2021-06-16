@@ -2,7 +2,7 @@
 
 ## Project
 
-Programmatically get the upcoming workdays as JSON of an employee working at a company using Quebble.
+Programmatically get the planning as JSON of an employee working at a company using Quebble.
 The goal of this tool is to load the results in Home Assistant so someone can be notified when there are changes made in the planning.
 
 ## Requirements

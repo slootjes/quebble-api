@@ -3,7 +3,7 @@
 require_once __DIR__.'/../bootstrap.php';
 
 $output = [];
-foreach ($quebble->loadWorkdays() as $workday) {
+foreach ($quebble->getPlanning() as $workday) {
     $output[] = $workday->toArray();
 }
 
