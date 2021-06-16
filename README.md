@@ -1,8 +1,9 @@
 # Quebble
 
-## Concept
+## Project
 
 Programmatically get the upcoming workdays as JSON of an employee working at a company using Quebble.
+The goal of this tool is to load the results in Home Assistant so someone can be notified when there are changes made in the planning.
 
 ## Requirements
 
@@ -22,5 +23,6 @@ Recommended installation is by using the provider Dockerfile.
 
 ## Disclaimer
 
+I am not affiliated with Quebble nor is this software endorsed by Quebble.
 You can use this software as-is without any warranty.
 You are responsible for securing your devices and software yourself.
