@@ -1,0 +1,12 @@
+# osx metadata
+.DS_Store
+
+# JetBrains project files (contains local paths)
+# https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+.idea
+
+# Composer
+source/app/vendor
+
+# Env
+.env.local
