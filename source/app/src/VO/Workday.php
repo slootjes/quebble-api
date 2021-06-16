@@ -7,37 +7,37 @@ class Workday
     /**
      * @var \DateTimeInterface
      */
-    private $start;
+    private \DateTimeInterface $start;
 
     /**
      * @var \DateTimeInterface
      */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * @var string
      */
-    private $location;
+    private string $location;
 
     /**
      * @var string
      */
-    private $group;
+    private string $group;
 
     /**
      * @var \DateTimeInterface|null
      */
-    private $breakStart;
+    private ?\DateTimeInterface $breakStart;
 
     /**
      * @var \DateTimeInterface|null
      */
-    private $breakEnd;
+    private ?\DateTimeInterface $breakEnd;
 
     /**
      * @var Colleague[]
      */
-    private $colleagues = [];
+    private array $colleagues = [];
 
     /**
      * @param \DateTimeInterface $start
@@ -136,7 +136,30 @@ class Workday
         );
     }
 
-    public function __toString(): string
+    /**
+     * Return full human readable string with all possible information
+     *
+     * @return string
+     */
+    public function toFullString(): string
+    {
+        return sprintf(
+            '%s: %s, %s van %s tot %s samen met %s',
+            $this->start->format('l'),
+            $this->location,
+            $this->group,
+            $this->start->format('H:i'),
+            $this->end->format('H:i'),
+            implode(', ', array_map(fn($colleague) => $colleague->getFirstName(), $this->colleagues))
+        );
+    }
+
+    /**
+     * Return compact string with only the important information
+     *
+     * @return string
+     */
+    public function toCompactString(): string
     {
         return sprintf(
             '%s - %s, %s: %s - %s',
@@ -163,7 +186,8 @@ class Workday
         }
 
         return [
-            'text' => (string)$this,
+            'textCompact' => $this->toCompactString(),
+            'textFull' => $this->toFullString(),
             'start' => $this->start->format(DATE_ISO8601),
             'end' => $this->end->format(DATE_ISO8601),
             'location' => $this->location,

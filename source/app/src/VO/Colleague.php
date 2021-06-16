@@ -7,17 +7,17 @@ class Colleague
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $start;
+    private \DateTimeImmutable $start;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $end;
+    private \DateTimeImmutable $end;
 
     /**
      * @param string $name
@@ -29,6 +29,22 @@ class Colleague
         $this->name = $name;
         $this->start = $start;
         $this->end = $end;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return explode(' ', $this->name)[0];
     }
 
     /**
