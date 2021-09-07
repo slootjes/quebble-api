@@ -143,7 +143,7 @@ class Workday
      */
     public function toFullString(): string
     {
-        return sprintf(
+        $text = sprintf(
             '%s: %s, %s van %s tot %s samen met %s',
             $this->start->format('l'),
             $this->location,
@@ -152,6 +152,16 @@ class Workday
             $this->end->format('H:i'),
             implode(', ', array_map(fn($colleague) => $colleague->getFirstName(), $this->colleagues))
         );
+
+        if ($this->breakStart && $this->breakEnd) {
+            $text .= sprintf(
+                ', pauze van %s tot %s',
+                $this->breakStart->format('H:i'),
+                $this->breakEnd->format('H:i'),
+            );
+        }
+
+        return $text;
     }
 
     /**
